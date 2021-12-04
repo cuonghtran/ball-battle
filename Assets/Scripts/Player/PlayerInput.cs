@@ -10,6 +10,7 @@ namespace MainGame
                 return null;
 
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            {
                 if (Input.touchCount > 0)
                 {
                     Touch touch = Input.GetTouch(0);
@@ -19,12 +20,12 @@ namespace MainGame
                         return ray;
                     }
                 }
-            else
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    return ray;
-                }
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                return ray;
+            }
 
             return null;
         }

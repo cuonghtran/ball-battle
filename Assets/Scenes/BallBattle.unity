@@ -2348,7 +2348,7 @@ MonoBehaviour:
   - {fileID: 865937406}
   - {fileID: 253109060}
   - {fileID: 1751673271}
-  ball_Text: {fileID: 0}
+  _arModeButton: {fileID: 74323584}
 --- !u!1 &466178273
 GameObject:
   m_ObjectHideFlags: 0

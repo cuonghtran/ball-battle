@@ -15,7 +15,7 @@ namespace MainGame
         [SerializeField] private TMP_Text _score_Text;
         [SerializeField] private Image[] _player1EnergyBars = new Image[6];
         [SerializeField] private Image[] _player2EnergyBars = new Image[6];
-        public TMP_Text ball_Text;
+        [SerializeField] private GameObject _arModeButton;
 
         private float _duration = 0;
         private bool _matchPlaying = false;
@@ -25,14 +25,14 @@ namespace MainGame
 
         public static Action<int[]> OnUpdateScore;
         public static Action<string, string> OnPlayerName;
-        public static Action<string> OnBallDetected;
 
         private void OnEnable()
         {
+            CheckRunOnMobileDevices();
+
             GameManager.OnMatchStarted += StartTimer;
             OnUpdateScore += UpdateScore;
             OnPlayerName += SetPlayersName;
-            OnBallDetected = SetBallName;
         }
 
         private void OnDisable()
@@ -40,11 +40,6 @@ namespace MainGame
             GameManager.OnMatchStarted -= StartTimer;
             OnUpdateScore -= UpdateScore;
             OnPlayerName -= SetPlayersName;
-        }
-
-        private void SetBallName(string name)
-        {
-            //ball_Text.text = ball_Text.text + ", " + name;
         }
 
         private void Update()
@@ -149,6 +144,14 @@ namespace MainGame
         }
 
         #endregion
+
+        private void CheckRunOnMobileDevices()
+        {
+            if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
+                _arModeButton.SetActive(true);
+            else
+                _arModeButton.SetActive(false);
+        }
 
         public void OnArButton_Click()
         {
